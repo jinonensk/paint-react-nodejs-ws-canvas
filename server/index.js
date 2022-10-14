@@ -31,13 +31,13 @@ app.listen(PORT, () => {
 
 const connectionHandler = (ws, msg) => {
   ws.id = msg.id
-  broadcastConnection(ws, msg)
+  broadcastConnection(msg)
 }
 
-const broadcastConnection = () => {
+const broadcastConnection = (msg) => {
   aWss.clients.forEach((c) => {
     if (c.id === msg.id) {
-      client.send(`Пользователь ${msg.username} подключен`)
+      c.send(`Пользователь ${msg.username} подключен`)
     }
   })
 }
