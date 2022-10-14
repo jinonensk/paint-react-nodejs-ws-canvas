@@ -10,19 +10,31 @@ import Rect from '../tools/Rect'
 
 const Toolbar = () => {
   const handleBrushClick = () => {
-    toolState.setTool(new Brush(canvasState.canvas))
+    new Brush(canvasState.canvas, canvasState.socket, canvasState.sessionId)
+    // toolState.setTool(
+    //   new Brush(canvasState.canvas, canvasState.socket, canvasState.sessionId),
+    // )
   }
   const handleRectClick = () => {
-    toolState.setTool(new Rect(canvasState.canvas))
+    // toolState.setTool(
+    //   new Rect(canvasState.canvas, canvasState.socket, canvasState.sessionId),
+    // )
+    new Rect(canvasState.canvas, canvasState.socket, canvasState.sessionId)
   }
   const handleCircleClick = () => {
-    toolState.setTool(new Circle(canvasState.canvas))
+    // toolState.setTool(
+    new Circle(canvasState.canvas, canvasState.socket, canvasState.sessionId)
+    // )
   }
   const handleEraserClick = () => {
-    toolState.setTool(new Eraser(canvasState.canvas))
+    // toolState.setTool(
+    new Eraser(canvasState.canvas, canvasState.socket, canvasState.sessionId)
+    // )
   }
   const handleLineClick = () => {
-    toolState.setTool(new Line(canvasState.canvas))
+    // toolState.setTool(
+    new Line(canvasState.canvas, canvasState.socket, canvasState.sessionId)
+    // )
   }
   const handleChangeColor = (evt) => {
     toolState.setFillColor(evt.target.value)
