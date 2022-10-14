@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000
 
 app.ws('/', (ws, req) => {
   console.log('Подключение установлено')
-  ws.send('ты успешно подключен')
+  // ws.send('ты успешно подключен')
   ws.on('message', (msg) => {
     const parsedMsg = JSON.parse(msg)
     switch (parsedMsg.method) {
@@ -15,7 +15,8 @@ app.ws('/', (ws, req) => {
         connectionHandler(ws, parsedMsg)
         break
       }
-      case 'message': {
+      case 'draw': {
+        broadcastConnection(parsedMsg)
         break
       }
       default: {
@@ -37,7 +38,9 @@ const connectionHandler = (ws, msg) => {
 const broadcastConnection = (msg) => {
   aWss.clients.forEach((c) => {
     if (c.id === msg.id) {
-      c.send(`Пользователь ${msg.username} подключен`)
+      // c.send(`Пользователь ${msg.username} подключен`)
+      console.log(msg)
+      c.send(JSON.stringify(msg))
     }
   })
 }
